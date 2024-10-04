@@ -34,7 +34,7 @@ def check_password(password,user):
 
 def employee_signup(request):
     if request.method == 'POST':
-        user=User.objects.filter(phone_number=request.POST.get('phone_number', '')).last()
+        user = User.objects.filter(phone_number=request.POST.get('phone_number', '')).last()
         if user:
             messages.error(request, "user already register.")
             context={"message":"Employee already register "}
@@ -177,9 +177,9 @@ def change_pass(request):
 
 def employee_homepage(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    context={}
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    context = {}
     if emp_number:
         context["employee_id"] = emp_number.employee_id
         context["phone"] = user_no.phone_number
@@ -190,10 +190,10 @@ def employee_homepage(request):
 
 def attendance(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    context={}
-    context={'value':'Attendance'}
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    context = {}
+    context = {'value':'Attendance'}
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
     context["days_present"] = 20
@@ -202,9 +202,9 @@ def attendance(request):
 
 def payslip(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    pay_roll=Payroll.objects.filter(employee=emp_number.id).last()
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    pay_roll = Payroll.objects.filter(employee=emp_number.id).last()
     context={}
     context['value'] = "Payslip Details"
     if pay_roll:
@@ -223,10 +223,10 @@ def payslip(request):
 
 def apply_leave(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    context={}
-    context={'value':'Apply_Leave'}
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    context = {}
+    context = {'value':'Apply_Leave'}
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
     if request.method == 'POST':
@@ -253,10 +253,10 @@ def apply_leave(request):
 
 def compensative_apply(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    context={}
-    context={'value':'Compensative_apply'}
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    context = {}
+    context = {'value':'Compensative_apply'}
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
     if request.method == 'POST':
@@ -288,7 +288,6 @@ def Refer_Friend(request):
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
     if request.method == 'POST':
-
         mobile_no = request.session.get('mobile_no')
         your_name = request.POST.get('your_name','')
         friend_name = request.POST.get('friend_name', '')
@@ -317,13 +316,12 @@ def Refer_Friend(request):
 
 def event(request):
     mobile_no = request.session.get('mobile_no')
-    user_no=User.objects.filter(phone_number=mobile_no).last()
-    emp_number=Employee.objects.filter(user_id=user_no.id).last()
-    context={}
-    context={'value':'Event'}
+    user_no = User.objects.filter(phone_number=mobile_no).last()
+    emp_number = Employee.objects.filter(user_id=user_no.id).last()
+    context = {}
+    context = {'value':'Event'}
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
-        
 
     return render(request,'event.html',context=context)
 
