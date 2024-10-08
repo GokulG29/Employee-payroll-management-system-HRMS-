@@ -322,7 +322,6 @@ def event(request):
     context = {'value':'Event'}
     context["employee_name"] = user_no.first_name
     context["designation"] = emp_number.designation
-
     return render(request,'event.html',context=context)
 
 
